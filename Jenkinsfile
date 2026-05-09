@@ -37,7 +37,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:${TAG} -f app/Dockerfile ./app")
+                    sh "docker build -t ${DOCKER_IMAGE}:${TAG} -f app/Dockerfile app/"
                 }
             }
         }
