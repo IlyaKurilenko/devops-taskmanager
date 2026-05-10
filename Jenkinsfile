@@ -43,9 +43,6 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {
-                branch 'main'
-            }
             steps {
                 sh 'docker compose up -d --no-deps --build app'
             }
