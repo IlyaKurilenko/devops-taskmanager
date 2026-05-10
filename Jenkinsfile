@@ -44,7 +44,12 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d --no-deps --build app'
+                sh '''
+                    docker stop taskmanager-app || true
+                    docker rm taskmanager-app || true
+                    cd /var/jenkins_home/workspace/taskmanager-pipeline
+                    docker-compose up -d --no-deps --build app
+                '''
             }
         }
     }
